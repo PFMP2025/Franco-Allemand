@@ -168,6 +168,42 @@ footer {
 .fr, .de {
   display: none;
 }
+	@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 8px;
+  }
+
+  nav a {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+
+  section {
+    padding: 30px 15px;
+    margin: 20px 10px;
+  }
+
+  .galerie {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .galerie img {
+    height: 140px;
+  }
+
+  iframe {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+}
+
 </style>
 
 </head>
@@ -282,7 +318,7 @@ footer {
   
 </div>
 
-</section>
+
 
 
 
@@ -305,7 +341,11 @@ footer {
     <h2 class="de">🎥 Projektvideo</h2>
     <p class="fr">Voici une vidéo sur la construction de l'abri solaire :</p>
     <p class="de">Ein Video erklärt, wie ein Solarunterstand funktioniert:</p>
-    <iframe width="560" height="315" src="VID-20250603-WA0000.mp4" allowfullscreen></iframe>
+    <video controls>
+  <source src="VID-20250603-WA0000.mp4" type="video/mp4">
+  Votre navigateur ne supporte pas la lecture de vidéos.
+</video>
+
 </section>
 
 <footer>
@@ -313,47 +353,43 @@ footer {
     <p class="de">Erstellt von den Schüler*innen des deutsch-französischen Projekts</p>
 </footer>
 
+
+
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
+
 <script>
-AOS.init();
-function switchLang(lang) {
+  
+  AOS.init();
+
+ 
+  function switchLang(lang) {
     document.querySelectorAll('.fr, .de').forEach(el => el.style.display = 'none');
     document.querySelectorAll('.' + lang).forEach(el => el.style.display = 'block');
-}
-window.onload = () => switchLang('fr');
-</script>
+  }
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+ 
+  window.onload = () => switchLang('fr');
 
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script>
-    AOS.init();
-    function switchLang(lang) {
-        document.querySelectorAll('.fr, .de').forEach(el => el.style.display = 'none');
-        document.querySelectorAll('.' + lang).forEach(el => el.style.display = 'block');
-    }
-    window.onload = () => switchLang('fr');
-</script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
-<script>
-    const lightbox = GLightbox({
-        selector: '.glightbox',
-        touchNavigation: true,
-        loop: true,
-        zoomable: true,
-        closeButton: true
-    });
-</script>
-<script>
-document.querySelectorAll('.galerie a img').forEach(img => {
-  img.addEventListener('error', () => {
-    const parent = img.closest('a');
-    if (parent) parent.remove();
+  const lightbox = GLightbox({
+    selector: '.glightbox',
+    touchNavigation: true,
+    loop: true,
+    zoomable: true,
+    closeButton: true
   });
-});
+
+  
+  document.querySelectorAll('.galerie a img').forEach(img => {
+    img.addEventListener('error', () => {
+      const parent = img.closest('a');
+      if (parent) parent.remove();
+    });
+  });
 </script>
+
 
 
 
